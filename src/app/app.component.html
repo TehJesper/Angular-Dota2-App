@@ -9,9 +9,13 @@
 
 <body>
   <label>
-    <input [(ngModel)]="matchId" placeholder="Match Id">
-    <br>
-    <button (click)="getMatchData()">Get Match Data</button>
+    <!-- <input [(ngModel)]="matchId" placeholder="Match Id">
+    <br> -->
+    <p>Press the button below to get the heroes of a random match.<br>
+    And guess which team won.</p>
+    <button (click)="getMatchData()">Get random match</button>
+    <p>Sometimes the API can't find the random match so it will not update.<br>
+      If that is the case please press the button above until it works.</p>
   </label>
   <h3>Points: {{punten}}</h3>
   <div *ngIf='result'>
@@ -33,9 +37,8 @@
     </ul>
     <button (click)="radiantWin()">Radiant</button>
     <button (click)="direWin()">Dire</button>
-    <p>Sometimes the redirect function of the buttons above doesn't work.<br>
-    If that is the case please press the button below until it works.</p>
-    <button (click)="getMatchData()">Refresh</button>
+    
+    
     <div *ngIf='victory'>
         <h1>{{victory}}</h1>
     </div>
