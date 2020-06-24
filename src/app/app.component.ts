@@ -9,7 +9,6 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AppComponent {
   title = 'workspace-DOTAPI';
-  matchId = '5472818926';
   result: any;
   heroes = [
     {
@@ -611,20 +610,13 @@ export class AppComponent {
   heroesRadiant = [];
   heroesDire = [];
   victory = '';
+  punten = 0;
   constructor(private http: HttpClient) { }
 
-  isEmpty(obj) {
-    for (var key in obj) {
-      if (obj.hasOwnProperty(key))
-        return false;
-    }
-    return true;
-  }
-
   getMatchData() {
-    this.http.get('https://api.opendota.com/api/matches/' + this.matchId).subscribe((matchData) => {
+    this.http.get('https://api.opendota.com/api/matches/' + '547281' + this.randomNumber(1000,9999)).subscribe((matchData) => {   
       this.result = matchData;
-      console.log(this.result);
+      // console.log(this.result);
       this.heroesDire = [];
       this.heroesRadiant = [];
       this.victory = '';
@@ -641,18 +633,29 @@ export class AppComponent {
   }
   radiantWin(){
     if (this.result.radiant_win == true) {
-      this.victory = 'Goed'
+      this.victory = 'Correct answer'
+      this.punten = this.punten + 1;
+      this.getMatchData();
     }
     else{
-      this.victory = 'Fout'
+      this.victory = 'Incorrect answer'
+      this.punten = this.punten - 1;
+      this.getMatchData();
     }
   }
   direWin(){
     if (this.result.radiant_win == false) {
-      this.victory = 'Goed'
+      this.victory = 'Correct answer'
+      this.punten = this.punten + 1;
+      this.getMatchData();
     }
     else{
-      this.victory = 'Fout'
+      this.victory = 'Incorrect answer'
+      this.punten = this.punten - 1;
+      this.getMatchData();
     }
+  }
+  randomNumber(min: number, max: number): number {
+    return Math.round(Math.random() * (max - min) + min);
   }
 }

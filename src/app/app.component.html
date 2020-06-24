@@ -13,8 +13,10 @@
     <br>
     <button (click)="getMatchData()">Get Match Data</button>
   </label>
+  <h3>Points: {{punten}}</h3>
   <div *ngIf='result'>
     <h3>Match {{result.match_id}} details:</h3>
+    
     <!-- <h4>{{result.picks_bans[0].hero_id}}</h4> -->
     <!-- <h3>{{heroes.heroes[result.picks_bans[0].hero_id].localized_name}}</h3> -->
     <h1>Radiant</h1>
@@ -31,6 +33,9 @@
     </ul>
     <button (click)="radiantWin()">Radiant</button>
     <button (click)="direWin()">Dire</button>
+    <p>Sometimes the redirect function of the buttons above doesn't work.<br>
+    If that is the case please press the button below until it works.</p>
+    <button (click)="getMatchData()">Refresh</button>
     <div *ngIf='victory'>
         <h1>{{victory}}</h1>
     </div>
